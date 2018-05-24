@@ -33,14 +33,26 @@ public class Grid {
     private void generate()
     {
         random = new Random();
-        cells=new Cell[width][height];
+        /*cells=new Cell[width][height];
         for(int i = 0; i <width; i++)
         {
             for(int j = 0; j<height;j++)
             {
                 cells[i][j]=new Cell(false);
             }
+        }*/
+        MapGenerator mapGenerator = new MapGenerator();
+        cells=mapGenerator.generateMap();
+        /*for(int i = 0; i <width; i++)
+        {
+            cells[i][0].setWall(true);
+            cells[i][width-1].setWall(true);
         }
+        for(int i = 0; i <height; i++)
+        {
+            cells[0][i].setWall(true);
+            cells[height-1][i].setWall(true);
+        }*/
         ants=new LinkedList<Ant>();
         int antX;
         int antY;
@@ -206,17 +218,20 @@ public class Grid {
     {
         for (Ant ant: ants)
         {
-            if(ant instanceof MeatEatingAnt)
+            if(ant instanceof PlantEatingAnt)
             {
                 for (Ant ant2: ants)
                 {
-                    if(ant2 instanceof PlantEatingAnt)
+                    if(ant2 instanceof MeatEatingAnt)
                     {
                         if(ant.getX()==ant2.getX()&&ant.getY()==ant2.getY())
                         {
-                            ((MeatEatingAnt) ant).feed();
-                            ant2.die();
-                            deadAnts.add(ant2);
+                            ((MeatEatingAnt) ant2).feed();
+                            ant.die();
+                            if(!deadAnts.contains(ant)) {
+                                deadAnts.add(ant);
+                            }
+                            break;
                         }
                     }
                 }
@@ -237,5 +252,86 @@ public class Grid {
 
     public Cell[][] getCells() {
         return cells;
+    }
+
+    public int getNumberOfMeatEatingAnts() {
+        return numberOfMeatEatingAnts;
+    }
+
+    public int getNumberOfPlantEatingAnts() {
+        return numberOfPlantEatingAnts;
+    }
+    private class MapGenerator
+    {
+        float chanceToStartAlive = 0.3f;
+        int deathLimit = 3;
+        int birthLimit = 5;
+        int numberOfSteps=2;
+
+        public Cell[][] initialiseMap(Cell[][] map){
+            Random random = new Random();
+            for(int x=0; x<width; x++){
+                for(int y=0; y<height; y++){
+                    map[x][y]=new Cell(false);
+                    if(random.nextInt() < chanceToStartAlive){
+                        map[x][y].setWall(true);
+                    }
+                }
+            }
+            return map;
+        }
+        public int countAliveNeighbours(Cell[][] map, int x, int y){
+            int count = 0;
+            for(int i=-1; i<2; i++){
+                for(int j=-1; j<2; j++){
+                    int neighbour_x = x+i;
+                    int neighbour_y = y+j;
+                    if(i == 0 && j == 0){
+                    }
+                    else if(neighbour_x < 0 || neighbour_y < 0 || neighbour_x >= map.length || neighbour_y >= map[0].length){
+                        count = count + 1;
+                    }
+                    else if(map[neighbour_x][neighbour_y].isWall()){
+                        count = count + 1;
+                    }
+                }
+            }
+            return count;
+        }
+        public Cell[][] doSimulationStep(Cell[][] oldMap){
+            Cell[][] newMap = new Cell[width][height];
+
+            for(int x=0; x<oldMap.length; x++){
+                for(int y=0; y<oldMap[0].length; y++){
+                    newMap[x][y]=new Cell(false);
+                    int nbs = countAliveNeighbours(oldMap, x, y);
+                    if(oldMap[x][y].isWall()){
+                        if(nbs < deathLimit){
+                            newMap[x][y].setWall(false);
+                        }
+                        else{
+                            newMap[x][y].setWall(true);
+                        }
+                    }
+                    else{
+                        if(nbs > birthLimit){
+                            newMap[x][y].setWall(true);
+                        }
+                        else{
+                            newMap[x][y].setWall(false);
+                        }
+                    }
+                }
+            }
+            return newMap;
+        }
+        public Cell[][] generateMap(){
+            Cell[][] map = new Cell[width][height];
+            map = initialiseMap(map);
+            for(int i=0; i<numberOfSteps; i++){
+                map = doSimulationStep(map);
+            }
+            return map;
+        }
     }
 }

@@ -4,7 +4,7 @@ import Logic.PlantEatingAnt;
 
 public class GridTest {
     public static void main(String[] args) {
-        Grid grid = new Grid(7,7,3,20);
+        Grid grid = new Grid(50,50,30,120);
         boolean quit=false;
         while (!quit) {
             for (int i = 0; i < grid.getWidth(); i++) {
@@ -33,6 +33,8 @@ public class GridTest {
                 }
                 System.out.println();
             }
+            System.out.println(grid.getNumberOfMeatEatingAnts()+"      "+grid.getNumberOfPlantEatingAnts());
+            for(int i =0;i<100;i++)
             grid.nextTick();
             try{
                 if(System.in.read()=='0')
