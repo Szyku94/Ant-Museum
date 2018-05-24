@@ -1,3 +1,5 @@
+package Logic;
+
 public class Cell {
     private boolean wall;
 

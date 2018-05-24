@@ -28,7 +28,7 @@ public class Start extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);   // Handle the CLOSE button
         pack();              // Either pack() the components; or setSize()
-        setTitle("Ant Museum");  // "super" JFrame sets the title
+        setTitle("Logic.Ant Museum");  // "super" JFrame sets the title
         setVisible(true);    // "super" JFrame show
     }
 }
