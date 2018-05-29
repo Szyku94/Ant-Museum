@@ -19,25 +19,31 @@ public class TestLogic {
         assert (grid.getNumberOfMeatEatingAnts()==30);
         assert (grid.getAnts()!=null);
         assert (!grid.getAnts().isEmpty());
-        Ant a = grid.getAnts().get(0);
         for(int i = 0; i<1000;i++)
         {
-            int x=a.getX();
-            int y=a.getY();
             assert (grid.getNumberOfMeatEatingAnts()>=0);
             assert (grid.getNumberOfPlantEatingAnts()>=0);
             grid.nextTick();
             for(Ant ant:grid.getAnts())
             {
+                int x=ant.getX();
+                int y=ant.getY();
                 assert (ant.getX()>=0);
                 assert (ant.getY()>=0);
                 assert (ant.getX()<grid.getWidth());
                 assert (ant.getY()<grid.getHeight());
-            }
-            if(a.isAlive())
-            {
-                assert ((x==a.getX()&&y==a.getY())||(x==a.getX()+1&&y==a.getY())||(x==a.getX()&&y==a.getY()+1)||
-                        (x==a.getX()-1&&y==a.getY())||(x==a.getX()&&y==a.getY()-1));
+                for(Ant ant2:grid.getAnts())
+                {
+                    if(ant2 instanceof MeatEatingAnt&&ant instanceof PlantEatingAnt&&ant.getY()==ant2.getY()&&ant.getX()==ant2.getX())
+                    {
+                        assert(!ant.isAlive());
+                    }
+                }
+                if(ant.isAlive())
+                {
+                    assert ((x==ant.getX()&&y==ant.getY())^(x==ant.getX()+1&&y==ant.getY())^(x==ant.getX()&&y==ant.getY()+1)^
+                            (x==ant.getX()-1&&y==ant.getY())^(x==ant.getX()&&y==ant.getY()-1));
+                }
             }
 
 

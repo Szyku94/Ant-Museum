@@ -32,7 +32,6 @@ public abstract class Ant {
     }
     public boolean move(int x, int y)
     {
-        lifetime--;
         if(lifetime<=0)
         {
             die();

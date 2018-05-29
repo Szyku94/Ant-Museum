@@ -8,4 +8,10 @@ public class MeatEatingAnt extends Ant {
     {
         lifetime+=5;
     }
+
+    @Override
+    public boolean move(int x, int y) {
+        lifetime--;
+        return super.move(x, y);
+    }
 }
