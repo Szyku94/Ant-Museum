@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="antMuseum" target="1.5" />
+      <module name="antMuseum" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
