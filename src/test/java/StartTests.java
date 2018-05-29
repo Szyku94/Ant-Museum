@@ -1,20 +1,43 @@
-import com.sun.istack.internal.Nullable;
 import gui.StartCanvas;
+import org.junit.Assert;
 import org.junit.Test;
-
-import static junit.framework.TestCase.*;
-import static org.junit.Assert.*;
 public class StartTests {
 
+    StartCanvas testerCanvas = new StartCanvas(); // MyClass is tested
+    Start testerStart = new Start();
     @Test
-    public void creatingClass() {
+    public void creatingClassCanvas() {
 
-        StartCanvas testerCanvas = new StartCanvas(); // MyClass is tested
-        Start testerStart = new Start();
-        // assert statements
-        /*assertNotNull("StartObject",tester);
-        assertEquals(0, tester.multiply(0, 10), "0 x 10 must be 0");
-        assertEquals(0, tester.multiply(0, 0), "0 x 0 must be 0");
-*/
+        Assert.assertNotNull(testerCanvas);
+
     }
+
+    @Test
+    public void textFieldValue() {
+        testerCanvas.getCountOfMeatAnts().setText("2");
+        Assert.assertEquals("2",testerCanvas.getCountOfMeatAnts().getText());
+        testerCanvas.getCountOfPlantAnts().setText("2");
+        Assert.assertEquals("2",testerCanvas.getCountOfPlantAnts().getText());
+    }
+
+    @Test
+    public void creatingClassStart() {
+
+        Assert.assertNotNull(testerStart);
+    }
+
+    @Test
+    public void butonClick(){
+        testerCanvas.getCountOfMeatAnts().setText("2");
+        testerCanvas.getCountOfPlantAnts().setText("2");
+        testerCanvas.getGridHeight().setText("2");
+        testerCanvas.getGridWidth().setText("2");
+        testerCanvas.getSaveButton().doClick();
+        Assert.assertEquals(2, testerCanvas.getMeatAnts());
+        Assert.assertEquals(2, testerCanvas.getPlantsAnts());
+        Assert.assertEquals(2, testerCanvas.getGridHeightValue());
+        Assert.assertEquals(2, testerCanvas.getGridWidthValue());
+    }
+
+
 }

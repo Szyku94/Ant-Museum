@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Start extends JFrame {
 
-    public static final int CANVAS_WIDTH = 300;
-    public static final int CANVAS_HEIGHT = 500;
+    public static final int CANVAS_WIDTH = 330;
+    public static final int CANVAS_HEIGHT = 330;
 
     private StartCanvas canvas;
 
@@ -28,7 +28,7 @@ public class Start extends JFrame {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);   // Handle the CLOSE button
         pack();              // Either pack() the components; or setSize()
-        setTitle("Logic.Ant Museum");  // "super" JFrame sets the title
+        setTitle("Ant Museum");  // "super" JFrame sets the title
         setVisible(true);    // "super" JFrame show
     }
 }
