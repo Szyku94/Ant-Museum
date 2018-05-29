@@ -59,6 +59,10 @@ public abstract class Ant {
         alive=true;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
     public int getX() {
         return x;
     }

@@ -33,26 +33,8 @@ public class Grid {
     private void generate()
     {
         random = new Random();
-        /*cells=new Cell[width][height];
-        for(int i = 0; i <width; i++)
-        {
-            for(int j = 0; j<height;j++)
-            {
-                cells[i][j]=new Cell(false);
-            }
-        }*/
         MapGenerator mapGenerator = new MapGenerator();
         cells=mapGenerator.generateMap();
-        /*for(int i = 0; i <width; i++)
-        {
-            cells[i][0].setWall(true);
-            cells[i][width-1].setWall(true);
-        }
-        for(int i = 0; i <height; i++)
-        {
-            cells[0][i].setWall(true);
-            cells[height-1][i].setWall(true);
-        }*/
         ants=new LinkedList<Ant>();
         int antX;
         int antY;
@@ -263,7 +245,7 @@ public class Grid {
     }
     private class MapGenerator
     {
-        float chanceToStartAlive = 0.3f;
+        float chanceToStartAlive = 0.4f;
         int deathLimit = 3;
         int birthLimit = 5;
         int numberOfSteps=2;
