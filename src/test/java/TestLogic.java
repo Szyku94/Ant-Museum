@@ -19,8 +19,13 @@ public class TestLogic {
         assert (grid.getNumberOfMeatEatingAnts()==30);
         assert (grid.getAnts()!=null);
         assert (!grid.getAnts().isEmpty());
+        Ant a = grid.getAnts().get(0);
         for(int i = 0; i<1000;i++)
         {
+            int x=a.getX();
+            int y=a.getY();
+            assert (grid.getNumberOfMeatEatingAnts()>=0);
+            assert (grid.getNumberOfPlantEatingAnts()>=0);
             grid.nextTick();
             for(Ant ant:grid.getAnts())
             {
@@ -29,6 +34,13 @@ public class TestLogic {
                 assert (ant.getX()<grid.getWidth());
                 assert (ant.getY()<grid.getHeight());
             }
+            if(a.isAlive())
+            {
+                assert ((x==a.getX()&&y==a.getY())||(x==a.getX()+1&&y==a.getY())||(x==a.getX()&&y==a.getY()+1)||
+                        (x==a.getX()-1&&y==a.getY())||(x==a.getX()&&y==a.getY()-1));
+            }
+
+
         }
     }
     public void testAnt()

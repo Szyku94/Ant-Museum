@@ -34,7 +34,7 @@ public class GridTest {
                 System.out.println();
             }
             System.out.println(grid.getNumberOfMeatEatingAnts()+"      "+grid.getNumberOfPlantEatingAnts());
-            for(int i =0;i<100;i++)
+            for(int i =0;i<1;i++)
             grid.nextTick();
             try{
                 if(System.in.read()=='0')

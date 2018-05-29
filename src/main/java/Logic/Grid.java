@@ -72,74 +72,44 @@ public class Grid {
     }
     public void nextTick()
     {
-        for (Ant ant:ants)
-        {
-            switch (ant.newDirection())
+        for (Ant ant : ants) {
+            a:
+            for(int i=0; i<10; i++)
             {
-                case UP:
-                    if(ant.getY()>0&&!cells[ant.getX()][ant.getY()-1].isWall())
-                    {
-                        if(!ant.move(0,-1))
-                        {
-                            deadAnts.add(ant);
+                switch (ant.newDirection()) {
+                    case UP:
+                        if (ant.getY() > 0 && !cells[ant.getX()][ant.getY() - 1].isWall()) {
+                            if (!ant.move(0, -1)) {
+                                deadAnts.add(ant);
+                                break a;
+                            }
                         }
-                    }
-                    else
-                    {
-                        if(!ant.move(0,0))
-                        {
-                            deadAnts.add(ant);
+                        break;
+                    case DOWN:
+                        if (ant.getY() < height - 1 && !cells[ant.getX()][ant.getY() + 1].isWall()) {
+                            if (!ant.move(0, 1)) {
+                                deadAnts.add(ant);
+                                break a;
+                            }
                         }
-                    }
-                    break;
-                case DOWN:
-                    if(ant.getY()<height-1&&!cells[ant.getX()][ant.getY()+1].isWall())
-                    {
-                        if(!ant.move(0,1))
-                        {
-                            deadAnts.add(ant);
+                        break;
+                    case LEFT:
+                        if (ant.getX() > 0 && !cells[ant.getX() - 1][ant.getY()].isWall()) {
+                            if (!ant.move(-1, 0)) {
+                                deadAnts.add(ant);
+                                break a;
+                            }
                         }
-                    }
-                    else
-                    {
-                        if(!ant.move(0,0))
-                        {
-                            deadAnts.add(ant);
+                        break;
+                    case RIGHT:
+                        if (ant.getX() < width - 1 && !cells[ant.getX() + 1][ant.getY()].isWall()) {
+                            if (!ant.move(1, 0)) {
+                                deadAnts.add(ant);
+                                break a;
+                            }
                         }
-                    }
-                    break;
-                case LEFT:
-                    if(ant.getX()>0&&!cells[ant.getX()-1][ant.getY()].isWall())
-                    {
-                        if(!ant.move(-1,0))
-                        {
-                            deadAnts.add(ant);
-                        }
-                    }
-                    else
-                    {
-                        if(!ant.move(0,0))
-                        {
-                            deadAnts.add(ant);
-                        }
-                    }
-                    break;
-                case RIGHT:
-                    if(ant.getX()<width-1&&!cells[ant.getX()+1][ant.getY()].isWall())
-                    {
-                        if(!ant.move(1, 0))
-                        {
-                            deadAnts.add(ant);
-                        }
-                    }
-                    else
-                    {
-                        if(!ant.move(0,0))
-                        {
-                            deadAnts.add(ant);
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
         }
         checkForCollision();
