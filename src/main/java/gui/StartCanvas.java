@@ -49,21 +49,19 @@ public class StartCanvas extends JPanel {
         saveButton.setBounds(185,290,100,30);
         add(saveButton);
 
-        saveButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                plantsAnts = Integer.parseInt(countOfPlantAnts.getText());
-                meatAnts = Integer.parseInt(countOfMeatAnts.getText());
-                gridHeightValue = Integer.parseInt(gridHeight.getText());
-                gridWidthValue = Integer.parseInt(gridWidth.getText());
-                GridCanvas gridCanvas = new GridCanvas(plantsAnts,meatAnts,gridHeightValue,gridWidthValue);
-                gridCanvas.setPreferredSize(new Dimension((gridWidthValue*8), (gridHeightValue*8)));
-                JFrame frame = new JFrame ("Grid");
-                frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().add(gridCanvas);
-                frame.pack();
-                frame.setVisible (true);
-                saveButton.setVisible(false);
-            }
+        saveButton.addActionListener(e -> {
+            plantsAnts = Integer.parseInt(countOfPlantAnts.getText());
+            meatAnts = Integer.parseInt(countOfMeatAnts.getText());
+            gridHeightValue = Integer.parseInt(gridHeight.getText());
+            gridWidthValue = Integer.parseInt(gridWidth.getText());
+            GridCanvas gridCanvas = new GridCanvas(plantsAnts,meatAnts,gridHeightValue,gridWidthValue);
+            gridCanvas.setPreferredSize(new Dimension((gridWidthValue*8), (gridHeightValue*8)));
+            JFrame frame = new JFrame ("Grid");
+            frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+            frame.getContentPane().add(gridCanvas);
+            frame.pack();
+            frame.setVisible (true);
+            saveButton.setVisible(false);
         });
 
         setLayout(null);

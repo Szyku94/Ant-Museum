@@ -286,4 +286,20 @@ public class Grid {
             return map;
         }
     }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void setNumberOfMeatEatingAnts(int numberOfMeatEatingAnts) {
+        this.numberOfMeatEatingAnts = numberOfMeatEatingAnts;
+    }
+
+    public void setNumberOfPlantEatingAnts(int numberOfPlantEatingAnts) {
+        this.numberOfPlantEatingAnts = numberOfPlantEatingAnts;
+    }
 }

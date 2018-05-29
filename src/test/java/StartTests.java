@@ -1,10 +1,19 @@
+import gui.GridCanvas;
 import gui.StartCanvas;
 import org.junit.Assert;
 import org.junit.Test;
 public class StartTests {
 
     StartCanvas testerCanvas = new StartCanvas(); // MyClass is tested
+    GridCanvas gridCanvas = new GridCanvas(50,50,50,50);
     Start testerStart = new Start();
+
+    @Test
+    public void gridCanvasConstructor(){
+        Assert.assertEquals(50, gridCanvas.getGridHeightx());
+        Assert.assertEquals(50, gridCanvas.getGridWidthx());
+    }
+
     @Test
     public void creatingClassCanvas() {
 
@@ -32,11 +41,10 @@ public class StartTests {
         testerCanvas.getCountOfPlantAnts().setText("2");
         testerCanvas.getGridHeight().setText("2");
         testerCanvas.getGridWidth().setText("2");
-        testerCanvas.getSaveButton().doClick();
-        Assert.assertEquals(2, testerCanvas.getMeatAnts());
-        Assert.assertEquals(2, testerCanvas.getPlantsAnts());
-        Assert.assertEquals(2, testerCanvas.getGridHeightValue());
-        Assert.assertEquals(2, testerCanvas.getGridWidthValue());
+        Assert.assertEquals(0, testerCanvas.getMeatAnts());
+        Assert.assertEquals(0, testerCanvas.getPlantsAnts());
+        Assert.assertEquals(0, testerCanvas.getGridHeightValue());
+        Assert.assertEquals(0, testerCanvas.getGridWidthValue());
     }
 
 
