@@ -17,18 +17,18 @@ public class GridCanvas extends JPanel {
 
     JLabel labelOfDeadPlants = new JLabel("Zjedzone roślinożerne:");
     JLabel labelOfDeadMeat = new JLabel("Martwe mięsożerne:");
-    JLabel numberOfDeadPlants = new JLabel("0");
-    JLabel numberOfDeadMeat = new JLabel("0");
+    public JLabel numberOfDeadPlants = new JLabel("0");
+    public JLabel numberOfDeadMeat = new JLabel("0");
 
     JLabel labelOfLivePlants = new JLabel("Żyjące roślinożerne:");
     JLabel labelOfLiveMeat = new JLabel("Żyjące mięsożerne:");
-    JLabel numberOfLivePlants = new JLabel("0");
-    JLabel numberOfLiveMeat = new JLabel("0");
+    public JLabel numberOfLivePlants = new JLabel("0");
+    public JLabel numberOfLiveMeat = new JLabel("0");
 
     JLabel labelOfBornPlants = new JLabel("Narodzone roślinożerne:");
     JLabel labelOfBornMeat = new JLabel("Narodzone mięsożerne:");
-    JLabel numberOfBornPlants = new JLabel("0");
-    JLabel numberOfBornMeat = new JLabel("0");
+    public JLabel numberOfBornPlants = new JLabel("0");
+    public JLabel numberOfBornMeat = new JLabel("0");
 
     JButton stopButton = new JButton("Stop");
 
