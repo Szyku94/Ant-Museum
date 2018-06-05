@@ -50,11 +50,11 @@ public abstract class Ant {
         this.x = x;
         this.y = y;
         direction = Direction.getRandomDirection();
-        pMvForv=40;
-        pMvLeft=25;
-        pMvRight=25;
+        pMvForv=50;
+        pMvLeft=20;
+        pMvRight=20;
         pMvBack=10;
-        lifetime=9;
+        lifetime=30;
         alive=true;
     }
 

@@ -55,7 +55,7 @@ public class StartCanvas extends JPanel {
             gridHeightValue = Integer.parseInt(gridHeight.getText());
             gridWidthValue = Integer.parseInt(gridWidth.getText());
             GridCanvas gridCanvas = new GridCanvas(plantsAnts,meatAnts,gridHeightValue,gridWidthValue);
-            gridCanvas.setPreferredSize(new Dimension((gridWidthValue*8), (gridHeightValue*8)));
+            gridCanvas.setPreferredSize(new Dimension((gridWidthValue*8+200), (gridHeightValue*8)));
             JFrame frame = new JFrame ("Grid");
             frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
             frame.getContentPane().add(gridCanvas);
