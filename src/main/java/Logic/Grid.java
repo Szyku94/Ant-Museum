@@ -20,6 +20,7 @@ public class Grid {
     private int numberOfBornMeat = 0;
     private int numberOfMeatEatingAnts;
     private int numberOfPlantEatingAnts;
+
     public Grid(int width, int height) {
         this.width = width;
         this.height = height;
@@ -143,15 +144,15 @@ public class Grid {
         int antY = random.nextInt(height);
         while (true) {
             if (!cells[antX][antY].isWall()) {
-                if ((random.nextInt(3) < 2) && (numberOfPlantEatingAnts < numberOfMeatEatingAnts)) {
+                    if ((random.nextInt(3) < 2) && (numberOfMeatEatingAnts > antLimit * 0.2)) {
                         ants.add(new PlantEatingAnt(antX, antY));
                         numberOfPlantEatingAnts++;
                         numberOfBornPlants++;
-                } else {
-                    ants.add(new MeatEatingAnt(antX, antY));
-                    numberOfMeatEatingAnts++;
-                    numberOfBornMeat++;
-                }
+                    } else {
+                        ants.add(new MeatEatingAnt(antX, antY));
+                        numberOfMeatEatingAnts++;
+                        numberOfBornMeat++;
+                    }
                 break;
             }
             antX = random.nextInt(width);

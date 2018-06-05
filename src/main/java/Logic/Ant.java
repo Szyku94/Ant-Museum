@@ -32,7 +32,7 @@ public abstract class Ant {
     }
     public boolean move(int x, int y)
     {
-        if(lifetime<=0)
+        if(lifetime<=0 && this instanceof MeatEatingAnt)
         {
             die();
             return false;
@@ -54,7 +54,7 @@ public abstract class Ant {
         pMvLeft=20;
         pMvRight=20;
         pMvBack=10;
-        lifetime=30;
+        lifetime=20;
         alive=true;
     }
 
